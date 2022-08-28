@@ -1,0 +1,19 @@
+.link {
+  background-color: #4c0c44d6;
+  margin: -8px;
+  padding: 17px 12px 17px 30px;
+  margin-bottom: 10px;
+  font-family: system-ui;
+  font-size: 20px;
+}
+.real-link {
+  color: white;
+  text-decoration: none;
+  margin-right: 24px;
+}
+.real-link:hover {
+  background-color: #0c15154d;
+  padding: 5px;
+  font-weight: bold;
+  border-radius: 10px;
+}

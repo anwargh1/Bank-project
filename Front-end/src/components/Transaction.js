@@ -1,0 +1,34 @@
+import React, { Component } from "react";
+import "../styles/transactions.css";
+
+class Transaction extends Component {
+  deletTransaction = () => {
+    this.props.deletTransaction(this.props.dataTransaction._id);
+  };
+
+  render() {
+    let dataTransaction = this.props.dataTransaction;
+    return (
+      <div id="data-transaction">
+        <table>
+          <tr>
+            <td
+              className={
+                dataTransaction.amount >= 0 ? "amountGreen" : "amountRed"
+              }
+            >
+              {dataTransaction.amount}
+            </td>
+            <td>{dataTransaction.vendor}</td>
+            <td>{dataTransaction.category}</td>
+            <td>
+              <button onClick={this.deletTransaction}>delete</button>
+            </td>
+          </tr>
+        </table>
+      </div>
+    );
+  }
+}
+
+export default Transaction;

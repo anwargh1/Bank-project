@@ -1,0 +1,35 @@
+.balanceRed {
+  font-weight: bold;
+  font-size: 25px;
+  padding: 10px;
+  background-color: #37d1d11c;
+  margin: 15px;
+  font-family: cursive;
+  color: red;
+}
+.balanceGreen {
+  font-weight: bold;
+  font-size: 25px;
+  padding: 10px;
+  margin: 15px;
+  font-family: cursive;
+  color: green;
+}
+
+td {
+  background-color: #af8da889;
+  border-radius: 10px;
+  padding: 10px;
+  color: rgb(37, 33, 33);
+  text-align: center;
+  width: 90px !important;
+  font-weight: bold;
+}
+
+.amountRed {
+  color: red;
+}
+
+.amountGreen {
+  color: green;
+}

@@ -1,0 +1,18 @@
+
+td {
+  background-color: #62084e9b;
+  border-radius: 10px;
+  padding: 10px;
+  color: white;
+  text-align: center;
+  width: 40px;
+}
+th {
+  background-color: #62084e;
+  border-radius: 10px;
+  padding: 10px;
+  color: white;
+  text-align: center;
+  font-size: 20px;
+  width: 40px;
+}
