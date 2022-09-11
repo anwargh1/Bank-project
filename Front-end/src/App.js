@@ -12,8 +12,10 @@ class App extends Component {
     this.state = {
       transactions: [],
       balance: 0,
+      categorys: [],
     };
   }
+
 
   getBalance = () => {
     let currentBalance = 0;
@@ -26,45 +28,42 @@ class App extends Component {
   };
 
   async getTransactions() {
-    return axios.get("http://localhost:3001/transactions");
+    const transactions = await axios.get("http://localhost:3001/transactions");
+    const categorys = await this.getCategorys();
+    this.setState({
+      categorys: categorys.data,
+      transactions: transactions.data,
+    });
+    this.getBalance();
   }
 
-  async componentDidMount() {
-    const response = await this.getTransactions();
-    this.setState({ transactions: response.data });
-    this.getBalance();
+  componentDidMount() {
+    this.getTransactions();
   }
 
   addTransaction = async (transaction) => {
-    let transactions = await axios.post(
-      "http://localhost:3001/transaction",
-      transaction
-    );
-    await this.setState({
-      transactions: transactions.data,
-    });
-    this.getBalance();
+    await axios.post("http://localhost:3001/transaction", transaction);
+    this.getTransactions();
   };
 
   deletTransaction = async (id) => {
-    let transactions = await axios.delete(
-      `http://localhost:3001/transaction/${id}`
-    );
-    await this.setState({
-      transactions: transactions.data,
-    });
-    this.getBalance();
+    await axios.delete(`http://localhost:3001/transaction/${id}`);
+    this.getTransactions();
   };
+
+  async getCategorys() {
+    return axios.get("http://localhost:3001/categorys");
+  }
 
   render() {
     return (
       <Router>
         <div className="App">
           <div className="link">
-            <Link to="/transactions" className="real-link">
+            <Link to="/" className="real-link">
               Home
             </Link>
-            <Link to="/" className="real-link">
+            <Link to="/transactions" className="real-link">
               Add Transaction
             </Link>
             <Link to="/categorys" className="real-link">
@@ -72,12 +71,14 @@ class App extends Component {
             </Link>
           </div>
           <Route
-            path="/"
+            path="/transactions"
             exact
-            render={() => <Operations addTransaction={this.addTransaction} />}
+            render={() => <Operations addTransaction={this.addTransaction} 
+            balance={this.state.balance}
+            />}
           />
           <Route
-            path="/transactions"
+            path="/"
             exact
             render={() => (
               <Transactions
@@ -87,7 +88,16 @@ class App extends Component {
               />
             )}
           />
-          <Route path="/categorys" exact render={() => <Categorys />} />
+          <Route
+            path="/categorys"
+            exact
+            render={() => (
+              <Categorys
+                categorys={this.state.categorys}
+                balance={this.state.balance}
+              />
+            )}
+          />
         </div>
       </Router>
     );

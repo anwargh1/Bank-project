@@ -8,25 +8,21 @@ class Transaction extends Component {
 
   render() {
     let dataTransaction = this.props.dataTransaction;
+    let changheDeposit = this.props.changheDeposit;
     return (
-      <div id="data-transaction">
-        <table>
-          <tr>
-            <td
-              className={
-                dataTransaction.amount >= 0 ? "amountGreen" : "amountRed"
-              }
-            >
-              {dataTransaction.amount}
-            </td>
-            <td>{dataTransaction.vendor}</td>
-            <td>{dataTransaction.category}</td>
-            <td>
-              <button onClick={this.deletTransaction}>delete</button>
-            </td>
-          </tr>
-        </table>
-      </div>
+      
+      <tr >
+        <td
+          className={dataTransaction.amount >= 0 ? "amountGreen" : "amountRed"}
+        >
+          {dataTransaction.amount}
+        </td>
+        <td>{dataTransaction.vendor}</td>
+        <td>{dataTransaction.category}</td>
+        <td>
+          <button onClick={this.deletTransaction}>delete</button>
+        </td>
+      </tr>
     );
   }
 }

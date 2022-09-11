@@ -1,37 +1,27 @@
-import axios from "axios";
 import React, { Component } from "react";
 
 class Categorys extends Component {
-  constructor() {
-    super();
-    this.state = {
-      categorys: [],
-    };
-  }
-
-  async getCategorys() {
-    return axios.get("http://localhost:3001/categorys");
-  }
-
-  async componentDidMount() {
-    const response = await this.getCategorys();
-    console.log(response.data);
-    this.setState({ categorys: response.data });
-  }
-
   render() {
-    let categorys = this.state.categorys;
+    let categorys = this.props.categorys;
     return (
       <div className="categorysBalance">
-        {categorys.map((c) => (
-          <div>
-            <table>
-              <tr>
-                <th>{c._id}</th> <td>{c.totalSum}</td>
+        <div>Balance : {this.props.balance}</div>
+        <table>
+          <thead>
+            <tr>
+              <th>Category</th>
+              <th>Total amount</th>
+            </tr>
+          </thead>
+          <tbody>
+            {categorys.map((c,index) => (
+              <tr key={index}>
+                <td>{c._id}</td>
+                <td>{c.totalSum}</td>
               </tr>
-            </table>
-          </div>
-        ))}
+            ))}
+          </tbody>
+        </table>
       </div>
     );
   }

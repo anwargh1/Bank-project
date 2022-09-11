@@ -62,52 +62,57 @@ class Operations extends Component {
   render() {
     return (
       <div id="home-container">
+        <div>{this.props.balance}</div>
         <table>
-          <tr>
-            <th>Amount</th>
-            <th>Vendor</th>
-            <th>Category</th>
-          </tr>
-          <tr>
-            <td>
-              <input
-                type="number"
-                placeholder="Amount"
-                id="amount-input"
-                onChange={this.updateAmountText}
-                value={this.state.amount}
-              />
-            </td>
-            <td>
-              <input
-                type="text"
-                placeholder="Vendor"
-                id="vendor-input"
-                onChange={this.updateVendorText}
-              />
-            </td>
-            <td>
-              <input
-                type="text"
-                placeholder="Category"
-                id="category-input"
-                onChange={this.updateCategoryText}
-              />
-            </td>
-          </tr>
+          <thead>
+            <tr>
+              <th>Amount</th>
+              <th>Vendor</th>
+              <th>Category</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <input
+                  type="number"
+                  placeholder="Amount"
+                  id="amount-input"
+                  onChange={this.updateAmountText}
+                  value={this.state.amount}
+                />
+              </td>
+              <td>
+                <input
+                  type="text"
+                  placeholder="Vendor"
+                  id="vendor-input"
+                  onChange={this.updateVendorText}
+                />
+              </td>
+              <td>
+                <input
+                  type="text"
+                  placeholder="Category"
+                  id="category-input"
+                  onChange={this.updateCategoryText}
+                />
+              </td>
+            </tr>
 
-          <tr>
-            <td>
-              <Link to="/transactions">
-                <button onClick={this.withdraw}>Withdraw</button>
-              </Link>
-            </td>
-            <td>
-              <Link to="/transactions">
-                <button onClick={this.deposit}>Deposit</button>
-              </Link>
-            </td>
-          </tr>
+            <tr>
+              <td>
+                <Link to="/">
+                  <button onClick={this.withdraw}>Withdraw</button>
+                </Link>
+              </td>
+              <td>
+                <Link to="/">
+                  <button onClick={this.deposit}>Deposit</button>
+                </Link>
+              </td>
+            </tr>
+          </tbody>
         </table>
       </div>
     );
